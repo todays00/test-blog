@@ -1,3 +1,15 @@
+import Header from "components/Header";
+import Footer from "components/Footer";
+import PostList from "components/PostList";
+import Carousel from "components/Carousel";
+
 export default function HomePage() {
-    return <h1>Home Page</h1>;
+    return (
+        <>
+            <Header />
+            <Carousel />
+            <PostList />
+            <Footer />
+        </>
+    );
 }
