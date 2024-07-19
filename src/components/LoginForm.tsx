@@ -1,10 +1,31 @@
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { app } from "firebaseApp";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function LoginForm() {
     const [error, setError] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
+
+    const navigate = useNavigate();
+
+    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        try {
+            const auth = getAuth(app);
+            await signInWithEmailAndPassword(auth, email, password);
+
+            toast.success("로그인에 성공했습니다.");
+            navigate("/");
+
+        } catch(error: any) {
+            toast.error(error.code);
+            console.log(error);
+        };
+    }
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {
@@ -33,7 +54,7 @@ export default function LoginForm() {
         }
     }
 
-    return <form action="/post" method="POST" className="form form--lg">
+    return <form onSubmit={onSubmit} className="form form--lg">
         <h1 className="form__title">로그인</h1>
         <div className="form__block">
             <label htmlFor="email">이메일</label>

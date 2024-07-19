@@ -164,6 +164,14 @@ footer a:hover {
   color: gray;
 }
 
+.post__no-post {
+  padding: 24px;
+  text-align: center;
+  color: gray;
+  border: 1px solid #f2f2f2;
+  border-radius: 20px;
+}
+
 /* post detail */
 
 .post__detail .post__title {
@@ -184,6 +192,19 @@ footer a:hover {
 
 .post__detail .post__text {
   padding: 20px 0px;
+}
+
+.post__text--pre-wrap {
+  white-space: pre-wrap;
+}
+
+.post__category {
+  color: gray;
+  border: 1px solid lightgray;
+  background: #f2f2f2;
+  padding: 0px 4px;
+  border-radius: 10px;
+  font-size: 12px;
 }
 
 /* profile */
@@ -226,6 +247,8 @@ footer a:hover {
 .profile__logout {
   color: gray;
   font-size: 14px;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .profile__logout:hover,
@@ -441,4 +464,32 @@ input:checked+.carousel__slide-container .nav label {
 .form__link:hover,
 .form__link:focus {
   color: black;
+}
+
+.form__error {
+  color: red;
+}
+
+.form select {
+  border: 1px solid lightgray;
+  max-width: 680px;
+  height: 40px;
+  padding: 0px 20px;
+  border-radius: 0.3rem;
+
+}
+
+/* loader */
+.loader {
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  border: 5px solid #2563eb;
+  border-radius: 50%;
+  z-index: 9999;
 }
