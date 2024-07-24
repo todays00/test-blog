@@ -1,5 +1,5 @@
 import AuthContext from "context/AuthContext";
-import { collection, deleteDoc, doc, getDoc, getDocs, orderBy, query, where } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs, orderBy, query, where } from "firebase/firestore";
 import { db } from "firebaseApp";
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -8,6 +8,13 @@ import { toast } from "react-toastify";
 interface PostListProps {
     hasNavigation?: boolean;
     defaultTab?: TabType | CategoryType;
+}
+
+export interface CommentsInterface {
+    content: string;
+    uid: string;
+    email: string;
+    createdAt: string;
 }
 
 export interface PostProps {
@@ -20,6 +27,7 @@ export interface PostProps {
     updatedAt: string;
     uid: string;
     category?: CategoryType;
+    comments?: CommentsInterface[];
 }
 
 type TabType = "all" | "my";
@@ -46,7 +54,7 @@ export default function PostList({
         let postsRef = collection(db, "posts");
         let postQuery;
 
-        if (activeTab == 'my' && user) {
+        if (activeTab === 'my' && user) {
             // 나의 글만 필터링
             postQuery = query(postsRef, where('uid', '==', user.uid), orderBy("createdAt", "desc"));
         } else if (activeTab === "all") {
