@@ -6,10 +6,10 @@ const ThemeContext = createContext({
 });
 
 interface ThemeProps {
-    children: ReactNode
+    children: ReactNode;
 }
 
-export const ThemeContextProvider = ({ children }:ThemeProps) => {
+export const ThemeContextProvider = ({ children }: ThemeProps) => {
     const [theme, setTheme] = useState(
         window.localStorage.getItem("theme") || "light"
     );
@@ -21,7 +21,7 @@ export const ThemeContextProvider = ({ children }:ThemeProps) => {
 
     return (
         <ThemeContext.Provider value={{ theme, toggleMode }}>
-            { children }
+            {children}
         </ThemeContext.Provider>
     )
 };
